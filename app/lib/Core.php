@@ -11,11 +11,14 @@ class Core
     {
         $url = $this->getUrl();
 //        Look in controllers for first value, ucwords - capitalize first letter
-        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+        if (!empty($url[0])) {
+            if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
 //            Sets a new controller
-            $this->currentController = ucwords($url[0]);
-            unset($url[0]);
+                $this->currentController = ucwords($url[0]);
+                unset($url[0]);
+            }
         }
+
 //        Require controller
         require_once '../app/controllers/' . $this->currentController . '.php';
         $this->currentController = new $this->currentController;
