@@ -1,2 +1,2 @@
 <?php
-echo 'MVC is Working';
+echo SITENAME;

@@ -4,5 +4,6 @@
     require_once 'lib/Controller.php';
     require_once 'lib/Database.php';
 
+    require_once 'config/config.php';
 //    Instance of Core class
     $init = new Core();
