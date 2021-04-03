@@ -1,6 +1,6 @@
 <?php
 
-class Main
+class Main extends Controller
 {
     public function __construct()
     {
@@ -8,11 +8,15 @@ class Main
 
     public function index()
     {
-        echo 'Home Page';
+        $this->view('main/index');
     }
 
     public function about()
     {
-        echo 'About';
+        $data = [
+          'title' => 'about',
+          'name' => 'Paweł'
+        ];
+        $this->view('main/about', $data);
     }
 }
