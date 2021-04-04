@@ -10,7 +10,7 @@ define('DB_NAME', 'fnx_group');
 define ('APPROOT',dirname(dirname(__FILE__)));
 
 //    URLROOT (Dynamic Links)
-define('URLROOT','localhost/fnx_group');
+define('URLROOT','http://localhost/fnx_group');
 
 //    SITENAME
 define('SITENAME','FNX Group');
