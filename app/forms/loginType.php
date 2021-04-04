@@ -1,9 +1,9 @@
 <form action="<?= URLROOT?>/users/login" id="login_form" method="post">
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+        <label for="username">Email address</label>
+        <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username" name="username">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        <span><?=$data['emailError']; ?></span>
+        <span><?=$data['usernameError']; ?></span>
     </div>
     <div class="form-group">
         <label for="password">Password</label>

@@ -28,15 +28,15 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'email' => trim($_POST['email']),
+                'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
                 'emailError' => '',
                 'passwordError' => '',
             ];
 
 //            Validate email
-            if (empty($data['email'])) {
-                $data['emailError'] = 'Please enter an Email';
+            if (empty($data['username'])) {
+                $data['usernameError'] = 'Please enter an Email';
             }
 
 //            Validate password
@@ -45,8 +45,8 @@ class Users extends Controller
             }
 
 //            Check if all errors are empty
-            if (empty($data['emailError']) && empty($data['passwordError'])) {
-                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+            if (empty($data['usernameError']) && empty($data['passwordError'])) {
+                $loggedInUser = $this->userModel->login($data['username'], $data['password']);
 
                 if ($loggedInUser) {
                     $this->createUserSession($loggedInUser);
@@ -57,9 +57,9 @@ class Users extends Controller
             }
         } else {
             $data = [
-                'email' => '',
+                'username' => '',
                 'password' => '',
-                'emailError' => '',
+                'usernameError' => '',
                 'passwordError' => '',
             ];
         }
@@ -70,14 +70,13 @@ class Users extends Controller
     public function createUserSession($user)
     {
         $_SESSION['user_id'] = $user->id;
-        $_SESSION['email'] = $user->email;
+        $_SESSION['username'] = $user->username;
         header('location:' . URLROOT);
     }
 
     public function logout() {
         unset($_SESSION['user_id']);
         unset($_SESSION['username']);
-        unset($_SESSION['email']);
         header('location:' . URLROOT . '/users/login');
     }
 }

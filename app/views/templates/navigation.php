@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="<?= URLROOT ?>">Navbar</a>
+    <a class="navbar-brand" href="<?= URLROOT ?>">FNX</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
         <?php
             if(isset($_SESSION['user_id'])) :
         ?>
-            <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/logout">Logout</a>
+            <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/logout">Logout <?=$_SESSION['username'] ;?></a>
         <?php else : ?>
         <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/login">Login</a>
         <?php endif ;?>

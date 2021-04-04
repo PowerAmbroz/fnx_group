@@ -12,17 +12,17 @@ class User
 
     public function getUsers()
     {
-        $this->db->query("SELECT * FROM users");
+        $this->db->query("SELECT * FROM user");
 
         return $this->db->setAllResults();
     }
 
-    public function login($email, $password)
+    public function login($username, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE user_email = :email');
+        $this->db->query('SELECT * FROM user WHERE username = :username');
 
         //Bind value
-        $this->db->bind(':email', $email);
+        $this->db->bind(':username', $username);
 
         $row = $this->db->single();
 
