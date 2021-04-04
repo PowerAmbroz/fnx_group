@@ -10,6 +10,12 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-            <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/login">Login</a>
+        <?php
+            if(isset($_SESSION['user_id'])) :
+        ?>
+            <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/logout">Logout</a>
+        <?php else : ?>
+        <a class="btn btn-outline-success" href="<?= URLROOT ?>/users/login">Login</a>
+        <?php endif ;?>
     </div>
 </nav>
