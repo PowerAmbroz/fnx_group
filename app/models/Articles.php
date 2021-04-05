@@ -16,9 +16,11 @@ class Articles
     public function getAllArticles(){
         $this->db->query(
             '
-                SELECT title, short_description, price, category.id, category.name, author.first_name, author.last_name FROM article
-                JOIN category ON article.category_id = category.id
-                JOIN author ON article.id = author.article_id
+                    select *, GROUP_CONCAT(au.first_name," ", au.last_name SEPARATOR ",") AS authors, GROUP_CONCAT(au.id SEPARATOR ",") as author_id
+                    from author au 
+                    left join article a on a.id = au.article_id
+                    JOIN category c ON a.category_id = c.id
+                    group by au.article_id;
                 '
         );
 
@@ -39,6 +41,3 @@ class Articles
         return $this->db->setAllResults();
     }
 }
-
-//JOIN article_tag ON article.id = article_tag.article_id AND article_tag.article_id = 1
-//                JOIN tag ON article_tag.tag_id=tag.id
