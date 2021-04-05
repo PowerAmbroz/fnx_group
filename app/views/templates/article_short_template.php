@@ -15,13 +15,12 @@
         $authors_name = $articles->authors;
         $author = explode(',', $authors_name);
 
-        $a = [];
+        $tags = $articles->tags;
+        $tag = explode(',', $tags);
 
         for ($i = 0; $i < count($id); $i++) {
             ?>
-
             <a href="<?= URLROOT ?>/authors/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
-
             <?php
         }
 
@@ -29,29 +28,41 @@
     </div>
 </section>
 <hr>
-<div class="col">
-    <?php
-    if (isset($_SESSION['user_id'])) {
-        ?>
+<div class="row">
+    <div class="col-6">
         <?php
-        if ($articles->price > 0) {
-            if ($_SESSION['wallet'] < $articles->price) {
-                ?>
-                <a href="#" class="btn btn-success">Not enought money</a>
-                <?php
-            } else {
-                ?>
-                <a href="#" class="btn btn-success">Buy <?= $articles->price; ?> $</a>
-                <?php
-            }
-        } else { ?>
-            <a href="#" class="btn btn-success">Read</a>
+        for ($i = 0; $i < count($tag); $i++) {
+            ?>
+            <a class="btn btn-link" href="#"><?= $tag[$i]; ?></a>
             <?php
         }
-    } else {
         ?>
-        <a href="#" class="btn btn-success">Please LogIn to Buy/Read</a>
+    </div>
+    <div class="col-6">
         <?php
-    } ?>
+        if (isset($_SESSION['user_id'])) {
+            ?>
+            <?php
+            if ($articles->price > 0) {
+                if ($_SESSION['wallet'] < $articles->price) {
+                    ?>
+                    <a href="#" class="btn btn-success">Not enought money</a>
+                    <?php
+                } else {
+                    ?>
+                    <a href="#" class="btn btn-success">Buy <?= $articles->price; ?> $</a>
+                    <?php
+                }
+            } else { ?>
+                <a href="#" class="btn btn-success">Read</a>
+                <?php
+            }
+        } else {
+            ?>
+            <a href="#" class="btn btn-success">Please LogIn to Buy/Read</a>
+            <?php
+        } ?>
 
+    </div>
 </div>
+<?php
