@@ -2,26 +2,29 @@
 
 class Main extends Controller
 {
-    /**
-     * @var mixed
-     */
-    private $userModel;
+
 
     public function __construct()
     {
-        $this->userModel = $this->model('User');
     }
 
     public function index()
     {
-        $users = $this->userModel->getUsers();
+        $model = $this->model('Articles');
 
+        $articles = $model->getAllArticles();
+
+//        var_dump($articles);
+
+//die;
         $data = [
             'title' => 'Home Page',
-            'users' => $users
+            'articles' => $articles
         ];
 
-        $this->view('main/index', $data);
+        $this->view('main/index', [
+            'articles' => $articles
+        ]);
     }
 
     public function about()

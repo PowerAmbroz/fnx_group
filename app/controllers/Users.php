@@ -71,6 +71,7 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['username'] = $user->username;
+        $_SESSION['wallet'] = $user->wallet;
         header('location:' . URLROOT);
     }
 
