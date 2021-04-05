@@ -18,6 +18,7 @@
         $tags = $articles->tags;
         $tag = explode(',', $tags);
 
+
         for ($i = 0; $i < count($id); $i++) {
             ?>
             <a href="<?= URLROOT ?>/authors/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
@@ -31,9 +32,9 @@
 <div class="row">
     <div class="col-6">
         <?php
-        for ($i = 0; $i < count($tag); $i++) {
+        for ($j = 0; $j < count($tag); $j++) {
             ?>
-            <a class="btn btn-link" href="#"><?= $tag[$i]; ?></a>
+            <a class="btn btn-link" href="<?= URLROOT ?>/tags/tagArticle/<?= $tag[$j]; ?>"><?= $tag[$j]; ?></a>
             <?php
         }
         ?>

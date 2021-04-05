@@ -19,8 +19,8 @@ class Articles
                     select *,
                             GROUP_CONCAT(DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
                             GROUP_CONCAT(DISTINCT au.id SEPARATOR ",") as author_id,
-                            GROUP_CONCAT(DISTINCT t.name SEPARATOR ",") as tags,
-                            GROUP_CONCAT(DISTINCT t.id SEPARATOR ",") as tags_id 
+                            GROUP_CONCAT(DISTINCT t.name SEPARATOR ",") as tags
+
                     from author au 
                     JOIN article a on a.id = au.article_id
                     JOIN category c ON a.category_id = c.id
