@@ -15,16 +15,41 @@ class Tag
 
     public function getTaggedArticles($tag_name)
     {
-        var_dump($tag_name);
         $this->db->query(
             '
-SELECT * FROM tag t
+            SELECT * FROM tag t
             JOIN article_tag art ON t.id = art.tag_id
             JOIN article a ON a.id = art.article_id
             WHERE t.name = :tag_name
         '
         );
         $this->db->bind(':tag_name', $tag_name);
+
+        return $this->db->setAllResults();
+    }
+
+    public function getAllTags()
+    {
+        $this->db->query(
+            '
+            SELECT * FROM tag t
+        '
+        );
+
+        return $this->db->setAllResults();
+    }
+
+    public function countArticles($id)
+    {
+        $this->db->query(
+            '
+            SELECT t.id, t.name, count(*) as num FROM article_tag art
+            JOIN tag t ON t.id = art.tag_id
+            GROUP By tag_id
+            ORDER BY count(*) DESC
+        '
+        );
+        $this->db->bind(':id', $id);
 
         return $this->db->setAllResults();
     }

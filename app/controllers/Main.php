@@ -9,12 +9,15 @@ class Main extends Controller
 
         $articles = $model->getAllArticles();
 //var_dump($articles);die;
-        $this->view('main/index', [
-            'articles' => $articles
-        ]);
+        $this->view(
+            'main/index',
+            [
+                'articles' => $articles
+            ]
+        );
     }
 
-    public function about()
+    public function read($article_id)
     {
         $this->view('main/about');
     }

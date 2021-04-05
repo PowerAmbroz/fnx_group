@@ -6,7 +6,7 @@
             <?= $articles->short_description; ?>
         </div>
     </div>
-    <div class="col-2 author">
+    <div class="col-4 author">
         <?php
 
         $authors_id = $articles->author_id;
@@ -21,7 +21,7 @@
 
         for ($i = 0; $i < count($id); $i++) {
             ?>
-            <a href="<?= URLROOT ?>/authors/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
+            <a class="btn btn-link" href="<?= URLROOT ?>/authors/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
             <?php
         }
 

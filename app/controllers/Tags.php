@@ -16,19 +16,29 @@ class Tags extends Controller
     public function index()
     {
         echo "Tag: ";
+        $getAllTags = $this->tags->getAllTags();
 
-        $this->view('tag/index');
+        foreach ($getAllTags as $tags) {
+            $countArticles = $this->tags->countArticles($tags->id);
+        }
+
+        $this->view(
+            'tag/index',
+            [
+                'allTags' => $countArticles
+            ]
+        );
     }
 
     public function tagArticle($tag_name)
     {
-
-        echo "Tag: ".$tag_name;
         $tagsRelatedArticle = $this->tags->getTaggedArticles($tag_name);
 
-//        var_dump($tagsRelatedArticle);die;
-        $this->view('tag/articles_related',[
-            'relatedArticles' => $tagsRelatedArticle
-        ]);
+        $this->view(
+            'tag/articles_related',
+            [
+                'relatedArticles' => $tagsRelatedArticle
+            ]
+        );
     }
 }
