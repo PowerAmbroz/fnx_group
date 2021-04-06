@@ -9,7 +9,7 @@ class Main extends Controller
 
     public function __construct()
     {
-        $this->model = $this->model('Articles');
+        $this->model = $this->model('Article');
     }
 
     public function index()

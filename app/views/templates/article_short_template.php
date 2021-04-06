@@ -51,7 +51,7 @@
                     <?php
                 } else {
                     ?>
-                    <a href="#" class="btn btn-success">Buy <?= $articles->price; ?> $</a>
+                    <a href="<?= URLROOT ?>/articles/buy/<?= $articles->article_id; ?>" class="btn btn-success">Buy <?= $articles->price; ?> $</a>
                     <?php
                 }
             } else { ?>

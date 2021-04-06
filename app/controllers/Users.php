@@ -72,12 +72,28 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['username'] = $user->username;
         $_SESSION['wallet'] = $user->wallet;
+        $_SESSION['error_response'] = '';
+        $_SESSION['success_response'] = '';
         header('location:' . URLROOT);
     }
 
-    public function logout() {
+    public function logout()
+    {
         unset($_SESSION['user_id']);
         unset($_SESSION['username']);
+        unset($_SESSION['wallet']);
+        unset($_SESSION['error_response']);
+        unset($_SESSION['success_response']);
+        session_destroy();
         header('location:' . URLROOT . '/users/login');
     }
+
+    public function myarticles()
+    {
+        $user_id = $_SESSION['user_id'];
+        $getBoughtArticles = $this->userModel->getBoughtArticles($user_id);
+        var_dump($getBoughtArticles);die;
+        $this->view('users/myarticles');
+    }
+
 }

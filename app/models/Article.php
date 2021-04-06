@@ -1,7 +1,7 @@
 <?php
 
 
-class Articles
+class Article
 {
     /**
      * @var Database
@@ -55,5 +55,41 @@ class Articles
         $this->db->bind(':article_id', $article_id);
 
         return $this->db->setAllResults();
+    }
+
+    public function setArticleBought($article_id, $user_id){
+        $query = $this->db->query(
+            '
+                    INSERT INTO article_user (article_id, user_id)
+                    VALUES (:article_id, :user_id)
+                '
+        );
+        $this->db->bind(':article_id', $article_id);
+        $this->db->bind(':user_id', $user_id);
+
+       $row =  $this->db->execute();
+       if($row){
+           return true;
+       }else{
+           return false;
+       }
+    }
+
+    public function checkArticle($article_id, $user_id){
+        $query = $this->db->query(
+            '
+                    SELECT article_id, user_id FROM article_user 
+                    WHERE article_id = :article_id AND user_id = :user_id
+                '
+        );
+        $this->db->bind(':article_id', $article_id);
+        $this->db->bind(':user_id', $user_id);
+
+        $row =  $this->db->single();
+        if($row){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
