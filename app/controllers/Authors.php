@@ -3,13 +3,29 @@
 
 class Authors extends Controller
 {
-    public function index($id)
+    /**
+     * @var mixed
+     */
+    private $model;
+
+    public function __construct(){
+        $this->model = $this->model('Author');
+    }
+
+    public function index(){
+
+        $getAllAuthors = $this->model->getAllAuthors();
+        $this->view('author/index',[
+            'getAllAuthors' => $getAllAuthors
+        ]);
+    }
+
+    public function author($id)
     {
-        $model = $this->model('Author');
 
-        $author = $model->getAuthor($id);
+        $author = $this->model->getAuthor($id);
 
-        $getArticles = $model->getArticlesFromAuthor($id);
+        $getArticles = $this->model->getArticlesFromAuthor($id);
 
 //        var_dump($getArticles);
 

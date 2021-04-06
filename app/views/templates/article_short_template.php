@@ -21,7 +21,7 @@
 
         for ($i = 0; $i < count($id); $i++) {
             ?>
-            <a class="btn btn-link" href="<?= URLROOT ?>/authors/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
+            <a class="btn btn-link" href="<?= URLROOT ?>/authors/author/<?= $id[$i]; ?>"><?= $author[$i]; ?></a>
             <?php
         }
 

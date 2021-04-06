@@ -41,4 +41,15 @@ class Author
 
         return $this->db->setAllResults();
     }
+
+    public function getAllAuthors()
+    {
+        $this->db->query(
+            '
+                SELECT * FROM author au
+                '
+        );
+
+        return $this->db->setAllResults();
+    }
 }
