@@ -16,7 +16,7 @@ class Articles
     public function getAllArticles(){
         $this->db->query(
             '
-                    select *,
+                    select *,c.name as category_name,
                             GROUP_CONCAT(DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
                             GROUP_CONCAT(DISTINCT au.id SEPARATOR ",") as author_id,
                             GROUP_CONCAT(DISTINCT t.name SEPARATOR ",") as tags

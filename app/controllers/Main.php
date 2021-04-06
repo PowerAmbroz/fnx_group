@@ -8,7 +8,7 @@ class Main extends Controller
         $model = $this->model('Articles');
 
         $articles = $model->getAllArticles();
-//var_dump($articles);die;
+
         $this->view(
             'main/index',
             [

@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?= URLROOT ?>/authors"">Authors <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= URLROOT ?>/categories"">Categories <span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <?php
         if (isset($_SESSION['user_id'])) :

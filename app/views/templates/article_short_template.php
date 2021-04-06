@@ -1,7 +1,7 @@
 <section class="row">
     <div class="col-12">
         <h1 class="title"><?= $articles->title; ?></h1>
-        <small><?= $articles->name ?></small>
+        <a class="btn btn-link" href="<?= URLROOT ?>/categories/articles/<?= $articles->category_id; ?>"><small><?= $articles->category_name ?></small></a>
         <div class="description">
             <?= $articles->short_description; ?>
         </div>
