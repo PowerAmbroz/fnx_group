@@ -26,7 +26,7 @@ foreach ($data['relatedArticles'] as $relatedArticles) {
                         <?php
                     } else {
                         ?>
-                        <a href="#" class="btn btn-success">Buy <?= $relatedArticles->price; ?> $</a>
+                        <a href="<?= URLROOT ?>/articles/buy/<?= $relatedArticles->id; ?>" class="btn btn-success">Buy <?= $relatedArticles->price; ?> $</a>
                         <?php
                     }
                 } else { ?>

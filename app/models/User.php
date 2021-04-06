@@ -39,15 +39,25 @@ class User
     {
         $this->db->query(
             '
-                    SELECT * FROM article_user aru
+                    SELECT *, c.name as category_name,
+                           GROUP_CONCAT( DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
+                           GROUP_CONCAT( DISTINCT au.id SEPARATOR ",") as author_id,
+                           GROUP_CONCAT( DISTINCT t.name SEPARATOR ",") as tags
+                    FROM article_user aru
+                    JOIN author au ON au.article_id = aru.article_id
                     JOIN article a ON aru.article_id = a.id
-                    WHERE user_id = :user_id
+                    JOIN category c ON a.category_id = c.id
+                    JOIN article_tag art ON art.article_id = au.article_id
+                    JOIN tag t ON t.id = art.tag_id
+                    WHERE aru.user_id = :user_id
+                    GROUP BY aru.article_id
                     '
         );
 
         //Bind value
         $this->db->bind(':user_id', $user_id);
-        $this->db->execute();
+
+        return $this->db->setAllResults();
     }
 
     public function updateUserWallet($user_id, $calculate)

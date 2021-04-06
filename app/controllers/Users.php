@@ -92,8 +92,9 @@ class Users extends Controller
     {
         $user_id = $_SESSION['user_id'];
         $getBoughtArticles = $this->userModel->getBoughtArticles($user_id);
-        var_dump($getBoughtArticles);die;
-        $this->view('users/myarticles');
+        $this->view('users/myarticles', [
+            'getBoughtArticles' => $getBoughtArticles
+        ]);
     }
 
 }

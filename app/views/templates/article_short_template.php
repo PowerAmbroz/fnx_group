@@ -56,6 +56,7 @@
                 }
             } else { ?>
                 <a href="<?= URLROOT ?>/main/read/<?= $articles->article_id; ?>" class="btn btn-success">Read</a>
+                <a href="<?= URLROOT ?>/articles/buy/<?= $articles->article_id; ?>" class="btn btn-success">Add to My Articles</a>
                 <?php
             }
         } else {
