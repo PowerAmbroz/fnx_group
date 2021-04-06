@@ -23,6 +23,7 @@
         <?php
         if (isset($_SESSION['user_id'])) :
             ?>
+        <div class="btn">Wallet: <?=$_SESSION['wallet'] ;?> $</div>
             <a class="btn btn-outline-success"
                href="<?= URLROOT ?>/users/logout">Logout <?= $_SESSION['username']; ?></a>
         <?php

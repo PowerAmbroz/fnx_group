@@ -2,12 +2,19 @@
 
 class Main extends Controller
 {
+    /**
+     * @var mixed
+     */
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = $this->model('Articles');
+    }
 
     public function index()
     {
-        $model = $this->model('Articles');
-
-        $articles = $model->getAllArticles();
+        $articles = $this->model->getAllArticles();
 
         $this->view(
             'main/index',
@@ -19,6 +26,13 @@ class Main extends Controller
 
     public function read($article_id)
     {
-        $this->view('main/about');
+        $readArticle = $this->model->getArticle($article_id);
+
+        $this->view(
+            'main/read',
+            [
+                'readArticle' => $readArticle
+            ]
+        );
     }
 }
