@@ -1,9 +1,17 @@
+<div class="row">
+    <div class="col-12">
+        <h1>My Articles</h1>
+        <hr>
+    </div>
+</div>
 <?php
 
-echo "My Article";
+
 foreach ($data['getBoughtArticles'] as $boughtArticle) {
     ?>
-    <section class="row">
+    <section class="article">
+        <div class="row">
+        <hr>
         <div class="col-12">
             <h1 class="title"><?= $boughtArticle->title; ?></h1>
             <a class="btn btn-link"
@@ -33,7 +41,7 @@ foreach ($data['getBoughtArticles'] as $boughtArticle) {
 
             ?>
         </div>
-    </section>
+        </div>
     <hr>
     <div class="row">
     <div class="col-6">
@@ -56,5 +64,6 @@ foreach ($data['getBoughtArticles'] as $boughtArticle) {
 
     </div>
     </div>
+    </section>
 <?php
 }

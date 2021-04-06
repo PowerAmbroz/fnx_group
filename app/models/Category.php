@@ -31,8 +31,8 @@ class Category
     {
         $this->db->query(
             '
-                SELECT * FROM article a
-                JOIN category c ON a.category_id = c.id
+                SELECT *,a.id as article_id, c.name as category_name, c.id as category_id FROM article a
+                LEFT JOIN category c ON a.category_id = c.id
                 WHERE a.category_id = :category_id
                 '
         );

@@ -15,7 +15,6 @@ class Tags extends Controller
 
     public function index()
     {
-        echo "Tag: ";
         $getAllTags = $this->tags->getAllTags();
 
         foreach ($getAllTags as $tags) {
@@ -33,7 +32,6 @@ class Tags extends Controller
     public function tagArticle($tag_name)
     {
         $tagsRelatedArticle = $this->tags->getTaggedArticles($tag_name);
-
         $this->view(
             'tag/articles_related',
             [

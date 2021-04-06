@@ -30,9 +30,9 @@ class Author
     {
         $this->db->query(
             '
-                SELECT * FROM author au
+                SELECT *, c.name as category_name FROM author au
                 JOIN article a ON a.id = au.article_id
-                JOIN category c ON a.id = c.id
+                LEFT JOIN category c ON au.article_id = c.id
                 WHERE au.id = :author_id
                 
                 '

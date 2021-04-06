@@ -16,8 +16,6 @@ class Categories extends Controller
     public function index()
     {
         $getAllCategories = $this->model->getAllCategories();
-        echo 'category';
-//        var_dump($getAllCategories);die;
         $this->view(
             'categories/index',
             [

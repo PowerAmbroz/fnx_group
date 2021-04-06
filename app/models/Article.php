@@ -17,16 +17,16 @@ class Article
     {
         $this->db->query(
             '
-                    select *,c.name as category_name,
+                    select *,a.id,au.article_id, c.name as category_name,
                             GROUP_CONCAT(DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
                             GROUP_CONCAT(DISTINCT au.id SEPARATOR ",") as author_id,
                             GROUP_CONCAT(DISTINCT t.name SEPARATOR ",") as tags
 
                     from author au 
                     JOIN article a on a.id = au.article_id
-                    JOIN category c ON a.category_id = c.id
-                    JOIN article_tag art ON art.article_id = au.article_id
-                    JOIN tag t ON t.id = art.tag_id
+                    LEFT JOIN category c ON a.category_id = c.id
+                    LEFT JOIN article_tag art ON art.article_id = au.article_id
+                    LEFT JOIN tag t ON t.id = art.tag_id
                     group by au.article_id;
                 '
         );
@@ -38,16 +38,16 @@ class Article
     {
         $this->db->query(
             '
-                    select *,c.name as category_name,
+                    SELECT *,a.id,au.article_id,c.name as category_name,
                             GROUP_CONCAT(DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
                             GROUP_CONCAT(DISTINCT au.id SEPARATOR ",") as author_id,
                             GROUP_CONCAT(DISTINCT t.name SEPARATOR ",") as tags
 
-                    from author au 
+                    FROM author au 
                     JOIN article a on a.id = au.article_id
-                    JOIN category c ON a.category_id = c.id
-                    JOIN article_tag art ON art.article_id = au.article_id
-                    JOIN tag t ON t.id = art.tag_id
+                    LEFT JOIN category c ON a.category_id = c.id
+                    LEFT JOIN article_tag art ON art.article_id = au.article_id
+                    LEFT JOIN tag t ON t.id = art.tag_id
                     WHERE a.id = :article_id
                     group by au.article_id;
                 '

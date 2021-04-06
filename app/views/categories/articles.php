@@ -8,37 +8,41 @@
 foreach ($data['getArticlesRelated'] as $relatedArticles) {
     ?>
 
-    <section class="row">
-        <div class="col-12">
-            <h1><?= $relatedArticles->title ?></h1>
-        </div>
-        <div class="col-12">
-            <p><?= $relatedArticles->short_description ?></p>
-            <hr>
-            <?php
-            if (isset($_SESSION['user_id'])) {
-                ?>
+    <section class="article">
+        <div class="row">
+            <div class="col-12">
+                <h1><?= $relatedArticles->title ?></h1>
+            </div>
+            <div class="col-12">
+                <p><?= $relatedArticles->short_description ?></p>
+                <hr>
                 <?php
-                if ($relatedArticles->price > 0) {
-                    if ($_SESSION['wallet'] < $relatedArticles->price) {
-                        ?>
-                        <a href="#" class="btn btn-success">Not enought money</a>
-                        <?php
-                    } else {
-                        ?>
-                        <a href="<?= URLROOT ?>/articles/buy/<?= $relatedArticles->id; ?>" class="btn btn-success">Buy <?= $relatedArticles->price; ?> $</a>
+                if (isset($_SESSION['user_id'])) {
+                    ?>
+                    <?php
+                    if ($relatedArticles->price > 0) {
+                        if ($_SESSION['wallet'] < $relatedArticles->price) {
+                            ?>
+                            <a href="#" class="btn btn-success">Not enought money</a>
+                            <?php
+                        } else {
+                            ?>
+                            <a href="<?= URLROOT ?>/articles/buy/<?= $relatedArticles->id; ?>"
+                               class="btn btn-success">Buy <?= $relatedArticles->price; ?> $</a>
+                            <?php
+                        }
+                    } else { ?>
+                        <a href="<?= URLROOT ?>/main/read/<?= $relatedArticles->article_id; ?>"
+                           class="btn btn-success">Read</a>
                         <?php
                     }
-                } else { ?>
-                    <a href="<?= URLROOT ?>/main/read/<?= $relatedArticles->id; ?>" class="btn btn-success">Read</a>
+                } else {
+                    ?>
+                    <a href="#" class="btn btn-success">Please LogIn to Buy/Read</a>
                     <?php
-                }
-            } else {
-                ?>
-                <a href="#" class="btn btn-success">Please LogIn to Buy/Read</a>
-                <?php
-            } ?>
+                } ?>
 
+            </div>
         </div>
     </section>
     <?php

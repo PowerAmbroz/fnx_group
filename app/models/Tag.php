@@ -18,7 +18,7 @@ class Tag
         $this->db->query(
             '
             SELECT * FROM tag t
-            JOIN article_tag art ON t.id = art.tag_id
+            LEFT JOIN article_tag art ON t.id = art.tag_id
             JOIN article a ON a.id = art.article_id
             WHERE t.name = :tag_name
         '
@@ -44,7 +44,7 @@ class Tag
         $this->db->query(
             '
             SELECT t.id, t.name, count(*) as num FROM article_tag art
-            JOIN tag t ON t.id = art.tag_id
+            LEFT JOIN tag t ON t.id = art.tag_id
             GROUP By tag_id
             ORDER BY count(*) DESC
         '

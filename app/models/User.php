@@ -39,16 +39,16 @@ class User
     {
         $this->db->query(
             '
-                    SELECT *, c.name as category_name,
+                    SELECT *,a.id,au.article_id, c.name as category_name,
                            GROUP_CONCAT( DISTINCT au.first_name," ", au.last_name SEPARATOR ",") AS authors,
                            GROUP_CONCAT( DISTINCT au.id SEPARATOR ",") as author_id,
                            GROUP_CONCAT( DISTINCT t.name SEPARATOR ",") as tags
                     FROM article_user aru
                     JOIN author au ON au.article_id = aru.article_id
                     JOIN article a ON aru.article_id = a.id
-                    JOIN category c ON a.category_id = c.id
-                    JOIN article_tag art ON art.article_id = au.article_id
-                    JOIN tag t ON t.id = art.tag_id
+                    LEFT JOIN category c ON a.category_id = c.id
+                    LEFT JOIN article_tag art ON art.article_id = au.article_id
+                    LEFT JOIN tag t ON t.id = art.tag_id
                     WHERE aru.user_id = :user_id
                     GROUP BY aru.article_id
                     '
