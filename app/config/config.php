@@ -1,16 +1,16 @@
 <?php
 
 //    Database Params
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'fnx_group');
+define('DB_HOST', 'DataBase_HOST');
+define('DB_USER', 'DataBase_USER');
+define('DB_PASS', 'DataBase_PASS');
+define('DB_NAME', 'DataBase_NAME');
 
 //    APPROOT
 define ('APPROOT',dirname(dirname(__FILE__)));
 
 //    URLROOT (Dynamic Links)
-define('URLROOT','http://localhost/fnx_group');
+define('URLROOT','your URL');
 
 //    SITENAME
 define('SITENAME','FNX Group');
