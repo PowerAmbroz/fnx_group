@@ -6,19 +6,19 @@ class Tags extends Controller
     /**
      * @var mixed
      */
-    private $tags;
+    private $tagsModel;
 
     public function __construct()
     {
-        $this->tags = $this->model('Tag');
+        $this->tagsModel = $this->model('Tag');
     }
 
-    public function index()
+    public function index(): array
     {
-        $getAllTags = $this->tags->getAllTags();
+        $getAllTags = $this->tagsModel->getAllTags();
 
         foreach ($getAllTags as $tags) {
-            $countArticles = $this->tags->countArticles($tags->id);
+            $countArticles = $this->tagsModel->countArticles($tags->id);
         }
 
         $this->view(
@@ -29,9 +29,9 @@ class Tags extends Controller
         );
     }
 
-    public function tagArticle($tag_name)
+    public function tagArticle(string $tag_name): array
     {
-        $tagsRelatedArticle = $this->tags->getTaggedArticles($tag_name);
+        $tagsRelatedArticle = $this->tagsModel->getTaggedArticles($tag_name);
         $this->view(
             'tag/articles_related',
             [

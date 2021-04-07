@@ -13,7 +13,7 @@ class Users extends Controller
         $this->userModel = $this->model('User');
     }
 
-    public function login()
+    public function login(): array
     {
         $data = [
             'title' => 'Login Page',
@@ -88,13 +88,16 @@ class Users extends Controller
         header('location:' . URLROOT . '/users/login');
     }
 
-    public function myarticles()
+    public function myarticles(): array
     {
         $user_id = $_SESSION['user_id'];
         $getBoughtArticles = $this->userModel->getBoughtArticles($user_id);
-        $this->view('users/myarticles', [
-            'getBoughtArticles' => $getBoughtArticles
-        ]);
+        $this->view(
+            'users/myarticles',
+            [
+                'getBoughtArticles' => $getBoughtArticles
+            ]
+        );
     }
 
 }

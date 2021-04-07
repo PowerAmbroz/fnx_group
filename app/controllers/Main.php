@@ -5,16 +5,16 @@ class Main extends Controller
     /**
      * @var mixed
      */
-    private $model;
+    private $articleModel;
 
     public function __construct()
     {
-        $this->model = $this->model('Article');
+        $this->articleModel = $this->model('Article');
     }
 
-    public function index()
+    public function index(): array
     {
-        $articles = $this->model->getAllArticles();
+        $articles = $this->articleModel->getAllArticles();
 
         $this->view(
             'main/index',
@@ -24,9 +24,9 @@ class Main extends Controller
         );
     }
 
-    public function read($article_id)
+    public function read(int $article_id): array
     {
-        $readArticle = $this->model->getArticle($article_id);
+        $readArticle = $this->articleModel->getArticle($article_id);
 
         $this->view(
             'main/read',

@@ -10,14 +10,14 @@ class User
         $this->db = new Database();
     }
 
-    public function getUsers()
+    public function getUsers(): array
     {
         $this->db->query("SELECT * FROM user");
 
         return $this->db->setAllResults();
     }
 
-    public function login($username, $password)
+    public function login(string $username, string $password): bool
     {
         $this->db->query('SELECT * FROM user WHERE username = :username');
 
@@ -35,7 +35,7 @@ class User
         }
     }
 
-    public function getBoughtArticles($user_id)
+    public function getBoughtArticles(int $user_id): array
     {
         $this->db->query(
             '
@@ -60,7 +60,7 @@ class User
         return $this->db->setAllResults();
     }
 
-    public function updateUserWallet($user_id, $calculate)
+    public function updateUserWallet(int $user_id, float $calculate)
     {
         $this->db->query(
             '
@@ -75,7 +75,7 @@ class User
         $this->db->execute();
     }
 
-    public function getWallet($user_id)
+    public function getWallet(int $user_id): array
     {
         $this->db->query(
             '

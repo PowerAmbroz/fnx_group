@@ -13,7 +13,7 @@ class Article
         $this->db = new Database();
     }
 
-    public function getAllArticles()
+    public function getAllArticles(): array
     {
         $this->db->query(
             '
@@ -34,7 +34,7 @@ class Article
         return $this->db->setAllResults();
     }
 
-    public function getArticle($article_id)
+    public function getArticle(int $article_id): array
     {
         $this->db->query(
             '
@@ -57,7 +57,8 @@ class Article
         return $this->db->setAllResults();
     }
 
-    public function setArticleBought($article_id, $user_id){
+    public function setArticleBought(int $article_id, int $user_id): bool
+    {
         $query = $this->db->query(
             '
                     INSERT INTO article_user (article_id, user_id)
@@ -67,15 +68,16 @@ class Article
         $this->db->bind(':article_id', $article_id);
         $this->db->bind(':user_id', $user_id);
 
-       $row =  $this->db->execute();
-       if($row){
-           return true;
-       }else{
-           return false;
-       }
+        $row = $this->db->execute();
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function checkArticle($article_id, $user_id){
+    public function checkArticle(int $article_id, int $user_id): bool
+    {
         $query = $this->db->query(
             '
                     SELECT article_id, user_id FROM article_user 
@@ -85,10 +87,10 @@ class Article
         $this->db->bind(':article_id', $article_id);
         $this->db->bind(':user_id', $user_id);
 
-        $row =  $this->db->single();
-        if($row){
+        $row = $this->db->single();
+        if ($row) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

@@ -13,7 +13,7 @@ class Author
         $this->db = new Database();
     }
 
-    public function getAuthor($author_id)
+    public function getAuthor(int $author_id): array
     {
         $this->db->query(
             '
@@ -26,7 +26,7 @@ class Author
         return $this->db->setAllResults();
     }
 
-    public function getArticlesFromAuthor($author_id)
+    public function getArticlesFromAuthor(int $author_id): array
     {
         $this->db->query(
             '
@@ -42,7 +42,7 @@ class Author
         return $this->db->setAllResults();
     }
 
-    public function getAllAuthors()
+    public function getAllAuthors(): array
     {
         $this->db->query(
             '

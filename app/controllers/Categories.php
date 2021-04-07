@@ -6,16 +6,16 @@ class Categories extends Controller
     /**
      * @var mixed
      */
-    private $model;
+    private $categoriesModel;
 
     public function __construct()
     {
-        $this->model = $this->model('Category');
+        $this->categoriesModel = $this->model('Category');
     }
 
-    public function index()
+    public function index(): array
     {
-        $getAllCategories = $this->model->getAllCategories();
+        $getAllCategories = $this->categoriesModel->getAllCategories();
         $this->view(
             'categories/index',
             [
@@ -24,9 +24,9 @@ class Categories extends Controller
         );
     }
 
-    public function articles($category_id)
+    public function articles(int $category_id): array
     {
-        $getArticlesRelated = $this->model->getArticlesRelated($category_id);
+        $getArticlesRelated = $this->categoriesModel->getArticlesRelated($category_id);
 
         $this->view(
             'categories/articles',

@@ -13,7 +13,7 @@ class Tag
         $this->db = new Database();
     }
 
-    public function getTaggedArticles($tag_name)
+    public function getTaggedArticles(string $tag_name): array
     {
         $this->db->query(
             '
@@ -28,7 +28,7 @@ class Tag
         return $this->db->setAllResults();
     }
 
-    public function getAllTags()
+    public function getAllTags(): array
     {
         $this->db->query(
             '
@@ -39,7 +39,7 @@ class Tag
         return $this->db->setAllResults();
     }
 
-    public function countArticles($id)
+    public function countArticles(int $id): array
     {
         $this->db->query(
             '

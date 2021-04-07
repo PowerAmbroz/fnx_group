@@ -13,7 +13,7 @@ class Category
         $this->db = new Database();
     }
 
-    public function getAllCategories()
+    public function getAllCategories(): array
     {
         $this->db->query(
             '
@@ -27,7 +27,7 @@ class Category
         return $this->db->setAllResults();
     }
 
-    public function getArticlesRelated($category_id)
+    public function getArticlesRelated(int $category_id): array
     {
         $this->db->query(
             '

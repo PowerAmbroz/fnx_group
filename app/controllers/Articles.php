@@ -18,7 +18,7 @@ class Articles extends Controller
         $this->userModel = $this->model('User');
     }
 
-    public function buy($article_id)
+    public function buy(int $article_id)
     {
         $user_id = $_SESSION['user_id'];
         $possession = $this->checkArticlePossession($article_id, $user_id);
@@ -39,7 +39,6 @@ class Articles extends Controller
 
                 $_SESSION['success_response'] = 'Your Article has been successfully bought';
                 header('location:' . URLROOT);
-
             } else {
                 $_SESSION['error_response'] = 'Something went wrong with the bought. Please try again later';
                 header('location:' . URLROOT);
@@ -50,9 +49,8 @@ class Articles extends Controller
         }
     }
 
-    public function checkArticlePossession($article_id, $user_id)
+    public function checkArticlePossession(int $article_id, int $user_id): bool
     {
         return $this->articleModel->checkArticle($article_id, $user_id);
-
     }
 }

@@ -6,16 +6,16 @@ class Authors extends Controller
     /**
      * @var mixed
      */
-    private $model;
+    private $authorModel;
 
     public function __construct()
     {
-        $this->model = $this->model('Author');
+        $this->authorModel = $this->model('Author');
     }
 
-    public function index()
+    public function index(): array
     {
-        $getAllAuthors = $this->model->getAllAuthors();
+        $getAllAuthors = $this->authorModel->getAllAuthors();
         $this->view(
             'author/index',
             [
@@ -24,10 +24,10 @@ class Authors extends Controller
         );
     }
 
-    public function author($id)
+    public function author(int $id): array
     {
-        $author = $this->model->getAuthor($id);
-        $getArticles = $this->model->getArticlesFromAuthor($id);
+        $author = $this->authorModel->getAuthor($id);
+        $getArticles = $this->authorModel->getArticlesFromAuthor($id);
 
         $this->view(
             'author/author',
